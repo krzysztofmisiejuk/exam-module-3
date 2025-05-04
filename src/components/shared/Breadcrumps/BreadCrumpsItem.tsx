@@ -1,14 +1,14 @@
 'use client'
+import { useContext } from 'react'
+import { usePathname } from 'next/navigation'
+import { ProductContext } from '@/contexts'
+import { Product } from '@/types/types'
 import {
 	BreadcrumbItem,
 	BreadcrumbLink,
 	BreadcrumbList,
 	BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { usePathname } from 'next/navigation'
-import { Product } from '@/types/types'
-import { useContext } from 'react'
-import { ProductContext } from '@/contexts'
 
 function BreadcrumpField({
 	route,

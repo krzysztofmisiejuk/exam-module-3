@@ -8,6 +8,8 @@ import FormWrapper from './FormWrapper'
 import MainHeading from './MainHeading'
 import PriceSummary from './PriceSummary'
 import QuantityCounter from './QuantityCounter'
+import Logo from './Logo'
+
 
 export {
 	Breadcrumps,
@@ -23,4 +25,5 @@ export {
 	PriceSummary,
 	QuantityCounter,
 	CarouselCards,
+	Logo
 }

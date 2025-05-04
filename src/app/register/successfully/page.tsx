@@ -1,10 +1,24 @@
-import { Heading, Paragraph } from "@/components";
-import { CheckCircleIcon } from "lucide-react";
+'use client'
+import { useRouter } from 'next/navigation'
+import { CheckCircle, Heading, Paragraph } from '@/components'
+import { useEffect } from 'react'
 
 export default function RegisterSuccesfully() {
+	const router = useRouter()
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			router.push('/login')
+		}, 3000)
+
+		return () => {
+			clearTimeout(timer)
+		}
+	}, [])
+
 	return (
 		<div className='py-[70px] flex flex-col items-center justify-center text-center gap-10'>
-			<CheckCircleIcon
+			<CheckCircle
 				width='100px'
 				height='100px'
 			/>

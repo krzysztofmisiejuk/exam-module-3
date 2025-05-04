@@ -1,4 +1,4 @@
-import { Heading } from '@/components/atoms'
+import { Heading } from '@/components'
 
 export default function FormHeading({
 	children,

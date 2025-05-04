@@ -1,4 +1,4 @@
-import { Paragraph } from '@/components/atoms'
+import { Paragraph } from '@/components'
 
 export default function CheckoutSuccessInfo({
 	first,

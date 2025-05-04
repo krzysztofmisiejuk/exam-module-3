@@ -55,7 +55,7 @@ model User {
   firstName    String
   email        String    @unique
   passwordHash String
-  mobileNumber Int    
+  mobileNumber String    
   image        String?
   address      Address?
   orders       Order[]
@@ -92,6 +92,8 @@ model OrderItem {
   productId       Int
   quantity        Int
   priceAtPurchase Float
+  color           String  @default("default") 
+  hasProtection   Boolean @default(false) 
   order           Order   @relation(fields: [orderId], references: [id])
   product         Product @relation(fields: [productId], references: [id])
 }

@@ -69,13 +69,14 @@ async function main() {
 	})
 
 	const passwordHash = await bcrypt.hash('Password123!', 10)
+
 	for (let i = 1; i <= 5; i++) {
 		const user = await prisma.user.create({
 			data: {
 				firstName: `User${i}`,
 				email: `user${i}@email.com`,
 				passwordHash,
-				mobileNumber: 123456789 + i,
+				mobileNumber: `12345678${i}`,
 				image: 'https://i.ibb.co/8LvhXrNh/profile-Img.png',
 			},
 		})

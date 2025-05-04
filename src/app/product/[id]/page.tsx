@@ -1,12 +1,11 @@
+import { Metadata } from 'next'
 import { Breadcrumps, ProductDetailCard } from '@/components'
 import { getEstimatedArrival } from '@/lib/utils'
-import { Product } from '@/types/types'
+import { Product, ProductDetailParamProps } from '@/types/types'
 
-interface ProductDetailParamProps {
-	params: Promise<{ id: string }>
+export const metadata: Metadata = {
+	title: 'Product Details',
 }
-
-const randomDate: string = getEstimatedArrival()
 
 export default async function ProductDetails({
 	params,
@@ -14,6 +13,7 @@ export default async function ProductDetails({
 	const { id } = await params
 	const response = await fetch(`http://localhost:3000/api/product/${id}`)
 	const product: Product = await response.json()
+	const randomDate: string = getEstimatedArrival()
 
 	return (
 		<section className='flex flex-col'>

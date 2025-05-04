@@ -1,6 +1,8 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { clearCart } from '@/lib/cartUtils'
+import { OrderType } from '@/types/types'
 import {
 	CheckCircle,
 	CheckoutSuccessInfo,
@@ -9,50 +11,13 @@ import {
 	Paragraph,
 	PriceSummary,
 } from '@/components'
-import { clearCart } from '@/lib/cartUtils'
-import { ProductInCart } from '@/types/types'
-
-interface OrderData {
-	orderNumber: string
-	products: ProductInCart[]
-	createdAt: string
-}
-
-type OrdersType = {
-	id: number
-	orderNumber: string
-	userId: number
-	createdAt: Date
-	status: string
-	totalAmount: number
-	items: OrderItems[]
-}
-
-type OrderItems = {
-	id: number
-	orderId: number
-	productId: number
-	quantity: number
-	priceAtPurchase: number
-	product: ProductInCart
-}
 
 export default function CheckoutSuccess({
 	lastOrder,
 }: {
-	lastOrder: OrdersType
+	lastOrder: OrderType
 }) {
-	const [orderData, setOrderData] = useState<OrderData | null>(null)
 	const router = useRouter()
-
-	console.log('LASTORDER checkout success:', lastOrder)
-	useEffect(() => {
-		const lastOrder = localStorage.getItem('lastOrder')
-		if (lastOrder) {
-			const parsedOrder: OrderData = JSON.parse(lastOrder)
-			setOrderData(parsedOrder)
-		}
-	}, [])
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -64,12 +29,11 @@ export default function CheckoutSuccess({
 
 	function handleClearCart() {
 		clearCart()
-		localStorage.removeItem('lastOrder')
 		router.push('/')
 	}
 
-	if (!orderData) {
-		return <Paragraph>Loading order details...</Paragraph>
+	if (!lastOrder || !lastOrder.products.length) {
+		return <Paragraph>No order details available</Paragraph>
 	}
 
 	return (
@@ -94,7 +58,7 @@ export default function CheckoutSuccess({
 				<div className='flex flex-col gap-4 w-full'>
 					<CheckoutSuccessInfo
 						first='Transaction Date'
-						second={new Date(lastOrder.createdAt).toLocaleDateString()}
+						second={new Date(lastOrder.createdAt).toDateString()}
 					/>
 					<CheckoutSuccessInfo
 						first='Payment method'
@@ -107,19 +71,19 @@ export default function CheckoutSuccess({
 				</div>
 				<div className='flex flex-col gap-4 w-full'>
 					<Paragraph size='lg'>Your Order</Paragraph>
-					{orderData.products.length === 0 ? (
+					{lastOrder.products.length === 0 ? (
 						<Paragraph>No products in order</Paragraph>
 					) : (
-						lastOrder.items.map((item) => (
+						lastOrder.products.map((product) => (
 							<OrderedProduct
-								key={item.id}
-								product={item}
+								key={product.id}
+								product={product}
 							/>
 						))
 					)}
 					<div>
 						<PriceSummary
-							productList={orderData.products}
+							productList={lastOrder.products}
 							checkout={true}
 							success={true}
 							onClickHandle={handleClearCart}

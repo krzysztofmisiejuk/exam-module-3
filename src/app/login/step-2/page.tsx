@@ -1,4 +1,4 @@
-import { LoginFormStepTwo } from "@/components";
+import { LoginFormStepTwo } from '@/components'
 
 export default function LoginStepTwo() {
 	return <LoginFormStepTwo />

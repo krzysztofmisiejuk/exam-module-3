@@ -15,6 +15,7 @@ import {
 	PriceSummary,
 	QuantityCounter,
 	CarouselCards,
+	Logo,
 } from './shared'
 
 import {
@@ -33,10 +34,19 @@ import {
 	Cart,
 	Checkout,
 	CheckoutSuccessInfo,
-	OrderedProduct
+	OrderedProduct,
+	ContactUs,
+	Chat,
+	ContactInfo,
 } from './subPages'
 
 import {
+	InstagramIcon,
+	LinkedInIcon,
+	FacebookIcon,
+	MailIcon,
+	PhoneIcon,
+	HomeIcon,
 	ApplePay,
 	MasterCard,
 	GooglePay,
@@ -85,8 +95,9 @@ export {
 	PriceSummary,
 	QuantityCounter,
 	CarouselCards,
+	Logo,
 
-	//subPages
+	//pages
 	Brands,
 	Categories,
 	CategoryCarousel,
@@ -103,8 +114,17 @@ export {
 	Checkout,
 	CheckoutSuccessInfo,
 	OrderedProduct,
+	ContactUs,
+	Chat,
+	ContactInfo,
 
 	//icons
+	InstagramIcon,
+	LinkedInIcon,
+	FacebookIcon,
+	MailIcon,
+	PhoneIcon,
+	HomeIcon,
 	ApplePay,
 	MasterCard,
 	GooglePay,

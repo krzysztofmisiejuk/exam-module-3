@@ -1,7 +1,7 @@
 'use client'
-import { CarouselCards, TileCard } from '@/components/shared'
 import { BrandsProps } from '@/types/types'
 import Link from 'next/link'
+import { CarouselCards, TileCard } from '@/components/shared'
 
 export default function BrandsCarousel({ brands }: { brands: BrandsProps[] }) {
 	return (

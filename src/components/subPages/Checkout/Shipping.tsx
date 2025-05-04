@@ -1,5 +1,4 @@
-import { Heading, Paragraph } from '@/components/atoms'
-import ShieldCross from '@/components/icons/SchieldCross'
+import { Heading, Paragraph, ShieldCross } from '@/components'
 
 export default function Shipping() {
 	return (

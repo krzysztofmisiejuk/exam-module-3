@@ -3,6 +3,11 @@ import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useContext } from 'react'
+import { useRouter } from 'next/navigation'
+import { Textarea } from '@/components/ui/textarea'
+import { AlertContext } from '@/contexts'
+import { AddressType } from '@/types/types'
+import { Button, CheckboxField } from '@/components'
 import {
 	Form,
 	FormControl,
@@ -17,11 +22,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
-import { AlertContext } from '@/contexts'
-import { AddressType } from '@/types/types'
-import { Button, CheckboxField } from '@/components/atoms'
-import { useRouter } from 'next/navigation'
 
 const newAdressFormSchema = z.object({
 	country: z.string().min(1, 'Country is required'),
@@ -53,7 +53,6 @@ export default function NewAddress() {
 				}),
 			})
 			const updatedAdress = await response.json()
-			// console.log('update adress', updateAddress)
 			if (response.ok) {
 				setAlert({ text: `${updatedAdress.message}`, type: 'success' })
 			} else {

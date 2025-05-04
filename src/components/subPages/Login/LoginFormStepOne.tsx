@@ -1,5 +1,13 @@
 'use client'
-import { Button, Paragraph } from '@/components/atoms'
+import { useContext } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+import { AlertContext } from '@/contexts/AlertContext'
+import { Button, Paragraph } from '@/components'
+import { Input } from '@/components/ui/input'
 import {
 	Form,
 	FormControl,
@@ -8,14 +16,6 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
-import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { useRouter } from 'next/navigation'
-import { AlertContext } from '@/contexts/AlertContext'
-import { useContext } from 'react'
 
 export default function LoginFormStepOne() {
 	const [, setAlert] = useContext(AlertContext)
@@ -76,10 +76,10 @@ export default function LoginFormStepOne() {
 					name='identifier'
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email or Username</FormLabel>
+							<FormLabel>Email or mobile phone number</FormLabel>
 							<FormControl>
 								<Input
-									placeholder='Email or Username'
+									placeholder='Email or mobile phone number'
 									{...field}
 								/>
 							</FormControl>

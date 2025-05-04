@@ -1,11 +1,11 @@
-import { Heading, Paragraph } from '@/components/atoms'
+import { Heading, Paragraph } from '@/components'
 import { Badge } from '@/components/ui/badge'
 import { ProductInCart } from '@/types/types'
 
 export default function OrderedProduct({
 	product,
 }: {
-	product:  ProductInCart
+	product: ProductInCart
 }) {
 	return (
 		<div

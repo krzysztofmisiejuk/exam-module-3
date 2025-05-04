@@ -18,8 +18,20 @@ import PlusIcon from './PlusIcon'
 import ShieldCross from './SchieldCross'
 import TrashIcon from './TrashIcon'
 import WarningCircle from './WarningCircle'
+import HomeIcon from './HomeIcon'
+import PhoneIcon from './PhoneIcon'
+import MailIcon from './MailIcon'
+import FacebookIcon from './Facebook'
+import LinkedInIcon from './LinkedinIcon'
+import InstagramIcon from './InstagramIcon'
 
 export {
+	InstagramIcon,
+	LinkedInIcon,
+	FacebookIcon,
+	MailIcon,
+	PhoneIcon,
+	HomeIcon,
 	ApplePay,
 	MasterCard,
 	GooglePay,

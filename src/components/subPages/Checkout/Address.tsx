@@ -1,12 +1,11 @@
 'use client'
-import clsx from 'clsx'
 import { useState } from 'react'
-import { Button, Heading, Paragraph } from '@/components/atoms'
-import NewAddress from './NewAddress'
-import ExistingAddress from './ExistingAddress'
+import clsx from 'clsx'
+import { Button, Heading, Paragraph } from '@/components'
+import { NewAddress, ExistingAddress } from './'
 import { AddressType } from '@/types/types'
 
-export default function Address({address}: {address: AddressType}) {
+export default function Address({ address }: { address: AddressType }) {
 	const [showNewAdress, setShowNewAdress] = useState<boolean>(false)
 
 	return (
@@ -43,7 +42,7 @@ export default function Address({address}: {address: AddressType}) {
 						<Paragraph size='lg'>New Address</Paragraph>
 					</Button>
 				</div>
-				{showNewAdress ? <NewAddress /> : <ExistingAddress address={address}/>}
+				{showNewAdress ? <NewAddress /> : <ExistingAddress address={address} />}
 			</div>
 		</div>
 	)

@@ -1,13 +1,12 @@
 'use client'
 import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/navigation'
-import { loadCart, saveCart, updateCartQuantity } from '@/lib/cartUtils'
-import { AddressType, ProductInCart } from '@/types/types'
-import { Heading, Paragraph } from '@/components/atoms'
-import { PriceSummary, ProductCart } from '@/components/shared'
-import { Address, Shipping, PaymentMethod } from './'
+import { Heading, Paragraph, PriceSummary, ProductCart } from '@/components'
+import { Address, Shipping, PaymentMethod } from '.'
 import { AlertContext } from '@/contexts'
 import { generateOrderId } from '@/lib/utils'
+import { loadCart, saveCart, updateCartQuantity } from '@/lib/cartUtils'
+import { AddressType, ProductInCart } from '@/types/types'
 
 export default function Checkout({
 	address,
@@ -39,14 +38,14 @@ export default function Checkout({
 		}
 	}, [])
 
-	const removeProductFromCart = (productId: number) => {
+	function removeProductFromCart(productId: number) {
 		const cart = loadCart()
 		const updatedCart = cart.filter((item) => item.id !== productId)
 		saveCart(updatedCart)
 		setProductList(updatedCart.filter((product) => product.isSelected))
 	}
 
-	const updateProtection = (productId: number, hasProtection: boolean) => {
+	function updateProtection(productId: number, hasProtection: boolean) {
 		const cart = loadCart()
 		const updatedCart = cart.map((item) =>
 			item.id === productId ? { ...item, hasProtection } : item
@@ -58,13 +57,6 @@ export default function Checkout({
 	async function payNow(data: ProductInCart[]) {
 		try {
 			const orderNumber = await generateOrderId(orderLength)
-
-			const orderData = {
-				orderNumber,
-				products: data,
-				createdAt: new Date().toISOString(),
-			}
-			localStorage.setItem('lastOrder', JSON.stringify(orderData))
 
 			const response = await fetch('http://localhost:3000/api/order', {
 				method: 'POST',

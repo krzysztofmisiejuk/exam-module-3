@@ -1,7 +1,6 @@
 'use client'
-
 import { useRouter, useSearchParams } from 'next/navigation'
-import { ProductCard } from '@/components/shared'
+import { ProductCard, Paragraph } from '@/components'
 import { Label } from '@/components/ui/label'
 import {
 	Select,
@@ -10,12 +9,11 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select'
-import { Product } from '@/types/types'
 import Pagination from './Pagination'
-import { Paragraph } from '@/components/atoms'
+import { ProductInCart } from '@/types/types'
 
 type ProductListProps = {
-	products: Product[]
+	products: ProductInCart[]
 	numberOfProducts: number
 }
 
@@ -83,8 +81,10 @@ export default function ProductList({
 				</Label>
 			</div>
 			{products.length === 0 && (
-				<Paragraph className='min-h-[5vh] grow mx-auto py-20'>No products matching your criteria were found</Paragraph>
-			)} 
+				<Paragraph className='min-h-[5vh] grow mx-auto py-20'>
+					No products matching your criteria were found
+				</Paragraph>
+			)}
 
 			<div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 justify-items-center'>
 				{products.map((product) => (
@@ -96,7 +96,6 @@ export default function ProductList({
 			</div>
 
 			<Pagination
-			
 				currentPage={page}
 				totalPages={totalPages}
 				isNoProdusts={products.length === 0}

@@ -1,5 +1,4 @@
-import { Heading, Paragraph } from '@/components/atoms'
-import { ApplePay } from '@/components/icons'
+import { Heading, Paragraph, ApplePay } from '@/components'
 import { Badge } from '@/components/ui/badge'
 
 export default function PaymentMethod() {

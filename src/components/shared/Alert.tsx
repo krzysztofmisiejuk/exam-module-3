@@ -1,12 +1,8 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import clsx from 'clsx'
 import { AlertContext } from '@/contexts/AlertContext'
-import { useContext } from 'react'
-import CrossIcon from '@/components/icons/CrossIcon'
-import CheckCircle from '@/components/icons/CheckCircle'
-import CrossCircle from '@/components/icons/CrossCircle'
-import InfoCircle from '@/components/icons/InfoCircle'
+import { CrossIcon, CheckCircle, CrossCircle, InfoCircle } from '@/components'
 
 export default function Alert() {
 	const [alert, setAlert] = useContext(AlertContext)

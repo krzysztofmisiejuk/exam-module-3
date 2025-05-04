@@ -8,6 +8,7 @@ import { Profile } from './Profile'
 import Cart from './Cart'
 import { Checkout } from './Checkout'
 import { CheckoutSuccessInfo, OrderedProduct } from './CheckoutSuccess'
+import { ContactUs, Chat, ContactInfo } from './Contact'
 
 export {
 	Brands,
@@ -25,5 +26,8 @@ export {
 	Checkout,
 	Cart,
 	CheckoutSuccessInfo,
-	OrderedProduct
+	OrderedProduct,
+	ContactUs,
+	Chat,
+	ContactInfo,
 }

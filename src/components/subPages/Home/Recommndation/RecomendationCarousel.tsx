@@ -1,5 +1,5 @@
 'use client'
-import { CarouselCards, ProductCard } from '@/components/shared'
+import { CarouselCards, ProductCard } from '@/components'
 import { ProductInCart } from '@/types/types'
 
 export default function RecomendationCarousel({

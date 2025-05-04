@@ -1,6 +1,16 @@
-import { HeadingTag, Size, Weight } from '@/types/types'
-import { Heading } from '../atoms'
+import { Heading } from '@/components'
 
+export type HeadingTag =
+	| 'h1'
+	| 'h2'
+	| 'h3'
+	| 'h4'
+	| 'h5'
+	| 'h6'
+	| 'div'
+	| 'span'
+export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
+export type Weight = 'regular' | 'medium' | 'semibold' | 'bold'
 
 export default function MainHeading({
 	tag,

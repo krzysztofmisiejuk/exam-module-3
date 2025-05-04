@@ -1,5 +1,11 @@
 'use client'
-import { Button, Paragraph } from '@/components/atoms'
+import { useContext, useState } from 'react'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { signIn } from 'next-auth/react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { Button, Paragraph, EyeOpen, EyeClosed } from '@/components'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
 	Form,
@@ -11,15 +17,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useContext, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { signIn } from 'next-auth/react'
 import { AlertContext } from '@/contexts/AlertContext'
-import EyeOpen from '@/components/icons/EyeOpen'
-import EyeClosed from '@/components/icons/EyeClosed'
 
 export default function LoginFormStepTwo() {
 	const [showPassword, setShowPassword] = useState(false)
@@ -49,10 +47,11 @@ export default function LoginFormStepTwo() {
 		}
 
 		const res = await signIn('credentials', {
-			identifier,
+			identifier: identifier,
 			password: data.password,
 			redirect: false,
 		})
+
 		if (res?.ok) {
 			setAlert({ text: 'Login succesfully', type: 'success' })
 			router.push('/')

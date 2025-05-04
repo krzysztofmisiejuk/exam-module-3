@@ -1,6 +1,6 @@
-import CartIcon from '@/components/icons/CartIcon'
 import Link from 'next/link'
 import { Session } from 'next-auth'
+import { CartIcon } from '@/components'
 
 export default function HeaderIconList({
 	session,
@@ -14,7 +14,10 @@ export default function HeaderIconList({
 			</Link>
 			<Link href='/profile'>
 				<div className='rounded-full h-10 w-10 overflow-hidden'>
-					<img src={session?.user.image} alt="profileImg" />
+					<img
+						src={session?.user.image}
+						alt='profileImg'
+					/>
 				</div>
 			</Link>
 		</div>

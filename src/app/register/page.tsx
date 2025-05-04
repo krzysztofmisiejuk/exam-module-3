@@ -1,14 +1,14 @@
-import { FormWrapper, MainHeading, RegisterForm } from "@/components";
+import { Metadata } from 'next'
+import { FormWrapper, RegisterForm, Logo } from '@/components'
 
+export const metadata: Metadata = {
+	title: 'Register',
+}
 
 export default async function Register() {
 	return (
 		<div className='flex flex-col justify-center items-center gap-8 my-[67px]'>
-			<MainHeading
-				tag='h2'
-				size='xxl'
-				weight='bold'
-			/>
+			<Logo size='lg'/>
 			<FormWrapper>
 				<RegisterForm />
 			</FormWrapper>

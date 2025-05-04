@@ -1,7 +1,5 @@
 'use client'
-
-import { Paragraph } from '@/components/atoms'
-import CheckboxField from '@/components/atoms/CheckboxField'
+import { Paragraph, CheckboxField } from '@/components'
 
 export default function ProductProtection({
 	hasProtection,

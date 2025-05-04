@@ -182,7 +182,7 @@ function SelectValue({
 		<SelectPrimitive.Value
 			data-slot='select-value'
 			className={cn(
-				'text-neutral-900 data-[placeholder]:text-neutral-500 w-full',
+				'text-base-dark data-[placeholder]:text-neutral-500 w-full',
 				sizeClass,
 				className
 			)}

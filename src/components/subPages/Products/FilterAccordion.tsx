@@ -1,13 +1,12 @@
 'use client'
-
 import { useMemo, useState, useEffect } from 'react'
-import { Accordion } from '@/components/ui/accordion'
 import {
+	Accordion,
 	AccordionItem,
 	AccordionTrigger,
 	AccordionContent,
 } from '@/components/ui/accordion'
-import CheckboxField from '@/components/atoms/CheckboxField'
+import { CheckboxField } from '@/components'
 import { Input } from '@/components/ui/input'
 import { Product } from '@/types/types'
 

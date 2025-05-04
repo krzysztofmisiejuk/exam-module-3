@@ -1,4 +1,9 @@
+import { Metadata } from "next"
 import { ProductList, Sidebar } from "@/components"
+
+export const metadata: Metadata = {
+	title: 'Products',
+}
 
 export default async function Products({
 	searchParams,

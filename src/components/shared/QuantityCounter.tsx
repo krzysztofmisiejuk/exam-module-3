@@ -1,7 +1,5 @@
 'use client'
-import { Button } from '@/components/atoms'
-import MinusIcon from '@/components/icons/MinusIcon'
-import PlusIcon from '@/components/icons/PlusIcon'
+import { Button, MinusIcon, PlusIcon } from '@/components'
 
 type QuantityCounterProps = {
 	setQuantity: (quantity: number) => void

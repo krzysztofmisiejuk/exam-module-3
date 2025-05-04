@@ -1,13 +1,7 @@
 import React from 'react'
 import { Badge } from '@/components/ui/badge'
 
-import {
-	Visa,
-	MasterCard,
-	Paypal,
-	ApplePay,
-	GooglePay,
-} from '@/components/icons'
+import { Visa, MasterCard, Paypal, ApplePay, GooglePay } from '@/components'
 
 export default function PaymentsList() {
 	const icons = [Visa, MasterCard, Paypal, ApplePay, GooglePay]
@@ -23,7 +17,7 @@ export default function PaymentsList() {
 					<div className='flex items-center justify-center'>
 						<IconComponent
 							width='40'
-							height='32'
+							height='30'
 						/>
 					</div>
 				</Badge>

@@ -1,8 +1,9 @@
 'use client'
 import { useState } from 'react'
 import clsx from 'clsx'
-import { Button } from '@/components/atoms'
-import { ProfileInfo, Transaction } from './'
+import { Button, Paragraph } from '@/components/atoms'
+import { ProfileInfo, Transaction } from '.'
+import { OrderType } from '@/types/types'
 
 interface ProfilePropsType {
 	session: {
@@ -13,14 +14,11 @@ interface ProfilePropsType {
 			id: string
 		}
 	}
-	orders: {}
+	orders: OrderType[]
 }
 
 export default function Profile({ session, orders }: ProfilePropsType) {
-	console.log('ORDERS in profile', orders)
-
 	const [showTransactions, setShowTransactions] = useState<boolean>(true)
-
 	return (
 		<section className='flex flex-col md:flex-row gap-12 py-10 text-neutral-900'>
 			<ProfileInfo session={session} />
@@ -37,7 +35,20 @@ export default function Profile({ session, orders }: ProfilePropsType) {
 				>
 					Transaction
 				</Button>
-				{showTransactions && <Transaction />}
+
+				{showTransactions &&
+					orders.length > 0 &&
+					orders.map((order) => {
+						return (
+							<Transaction
+								key={order.id}
+								order={order}
+							/>
+						)
+					})}
+				{showTransactions && orders.length === 0 && (
+					<Paragraph>No transactions</Paragraph>
+				)}
 			</div>
 		</section>
 	)

@@ -1,13 +1,12 @@
 'use client'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useContext, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/atoms'
-import { FormHeading } from '@/components/shared'
 import { User } from '@/types/types'
+import { AlertContext } from '@/contexts'
 import {
 	Select,
 	SelectContent,
@@ -23,10 +22,13 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { AlertContext } from '@/contexts/AlertContext'
-import EyeOpen from '@/components/icons/EyeOpen'
-import EyeClosed from '@/components/icons/EyeClosed'
-import CheckboxField from '@/components/atoms/CheckboxField'
+import {
+	Button,
+	CheckboxField,
+	EyeClosed,
+	EyeOpen,
+	FormHeading,
+} from '@/components'
 
 const phoneRegex = new RegExp(
 	/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
@@ -62,8 +64,8 @@ const registerSchema = z
 type RegisterFormData = z.infer<typeof registerSchema>
 
 export default function RegisterForm() {
-	const [showPassword, setShowPassword] = useState(false)
-	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+	const [showPassword, setShowPassword] = useState<boolean>(false)
+	const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false)
 	const [, setAlert] = useContext(AlertContext)
 
 	const router = useRouter()
@@ -104,8 +106,9 @@ export default function RegisterForm() {
 		await register({
 			name: data.email.split('@')[0],
 			email: data.email,
-			mobileNumber: +data.mobileNumber,
+			mobileNumber: data.mobileNumber,
 			password: data.password,
+			address: data.country,
 		})
 	}
 

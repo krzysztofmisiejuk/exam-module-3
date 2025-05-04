@@ -10,9 +10,7 @@ import {
 	CarouselNext,
 	type CarouselApi,
 } from '@/components/ui/carousel'
-
-import { ArrowRight } from '@/components/icons'
-import { Button, Heading, Paragraph } from '@/components/atoms'
+import { Button, Heading, Paragraph, ArrowRight } from '@/components'
 import { CategoriesProps } from '@/types/types'
 
 export default function CategoryCarousel({

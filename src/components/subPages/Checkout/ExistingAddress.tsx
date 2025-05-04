@@ -1,4 +1,4 @@
-import { Paragraph } from '@/components/atoms'
+import { Paragraph } from '@/components'
 import { Badge } from '@/components/ui/badge'
 import { capitalize } from '@/lib/utils'
 import { AddressType } from '@/types/types'

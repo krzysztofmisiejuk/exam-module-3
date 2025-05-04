@@ -1,5 +1,5 @@
-import { HeadingTag, Size, Weight } from '@/types/types'
 import React from 'react'
+import { HeadingTag, Size, Weight } from '@/types/types'
 
 interface HeaderProps {
 	Tag: HeadingTag

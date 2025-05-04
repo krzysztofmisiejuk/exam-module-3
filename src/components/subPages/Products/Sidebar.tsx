@@ -1,8 +1,7 @@
 'use client'
 import { useContext } from 'react'
-import { Heading } from '@/components/atoms'
-import CheckboxField from '@/components/atoms/CheckboxField'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Heading, CheckboxField } from '@/components'
 import {
 	Accordion,
 	AccordionContent,

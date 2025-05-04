@@ -1,5 +1,4 @@
-import { Heading, Paragraph } from "@/components/atoms"
-
+import { Heading, Paragraph } from '@/components'
 
 const items = [
 	{

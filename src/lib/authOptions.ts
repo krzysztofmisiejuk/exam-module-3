@@ -1,37 +1,36 @@
-// lib/authOptions.ts
-
 import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { getUserByEmail, getUserByUsername } from '@/lib/db'
 import { compare } from 'bcrypt'
+import { getUserByEmail, getUserByMobileNumber } from '@/lib/db'
 
 export const authOptions: AuthOptions = {
 	providers: [
 		CredentialsProvider({
 			name: 'Credentials',
 			credentials: {
-				email: { label: 'Email lub Username', type: 'text' },
-				password: { label: 'Hasło', type: 'password' },
+				identifier: { label: 'Email or Phone Number', type: 'text' },
+				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials) {
 				if (!credentials) return null
 
-				const { email, password } = credentials as {
-					email: string
+				const { identifier, password } = credentials as {
+					identifier: string
 					password: string
 				}
 
-				const userByEmail = await getUserByEmail(email)
-				const userByUsername = userByEmail
-					? null
-					: await getUserByUsername(email)
-				const user = userByEmail || userByUsername
+				let user = await getUserByEmail(identifier)
+
+				if (!user) {
+					user = await getUserByMobileNumber(identifier)
+				}
 
 				if (!user) {
 					return null
 				}
 
 				const isPasswordValid = await compare(password, user.passwordHash)
+
 				if (!isPasswordValid) {
 					return null
 				}

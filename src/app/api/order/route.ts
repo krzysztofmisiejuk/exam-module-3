@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 		return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 	  }
   
-	  const order = await createOrder(Number(userId), data, orderNumber); // Przekaż orderNumber
+	  const order = await createOrder(Number(userId), data, orderNumber); 
   
 	  return NextResponse.json(
 		{

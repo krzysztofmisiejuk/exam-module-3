@@ -1,15 +1,3 @@
-export type HeadingTag =
-	| 'h1'
-	| 'h2'
-	| 'h3'
-	| 'h4'
-	| 'h5'
-	| 'h6'
-	| 'div'
-	| 'span'
-export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
-export type Weight = 'regular' | 'medium' | 'semibold' | 'bold'
-
 export interface JWT {
 	id: string
 	email: string
@@ -38,7 +26,7 @@ export interface User {
 	name: string
 	email: string
 	password: string
-	mobileNumber: number
+	mobileNumber: string
 	image?: string
 	address?: string
 }
@@ -78,7 +66,28 @@ export interface ProductInCart extends Product {
 	quantity: number
 	hasProtection: boolean
 	isSelected: boolean
-	color: 'default' | 'white' | 'black'
+	color: string
+}
+
+export interface OrderType {
+	id: number
+	orderNumber: string
+	userId: number
+	createdAt: string
+	status: string
+	totalAmount: number
+	products: ProductInCart[]
+}
+
+export interface OrderItemType {
+	id: number
+	orderId: number
+	productId: number
+	quantity: number
+	priceAtPurchase: number
+	color: string
+	hasProtection: boolean
+	product: Product
 }
 
 export type CheckboxFieldProps = {
@@ -108,23 +117,6 @@ export interface AddressType {
 }
 
 
-export interface OrderProduct {
-	id: number
-	name: string
-	price: number
-	quantity: number
-	imageUrl: string | null
-	hasProtection: boolean
-	isSelected: boolean
-	color: 'default' | 'white' | 'black'
-}
-
-export interface OrderType {
-	id: number
-	orderNumber: string
-	userId: number
-	createdAt: string
-	status: string
-	totalAmount: number
-	products: OrderProduct[]
+export interface ProductDetailParamProps {
+	params: Promise<{ id: string }>
 }

@@ -1,8 +1,6 @@
 'use client'
-
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Button } from '@/components/atoms'
-import { ArrowLeft, ArrowRight } from '@/components/icons'
+import { Button, ArrowLeft, ArrowRight } from '@/components'
 
 interface PaginationProps {
 	currentPage: number
@@ -13,7 +11,7 @@ interface PaginationProps {
 export default function Pagination({
 	currentPage,
 	totalPages,
-	isNoProdusts
+	isNoProdusts,
 }: PaginationProps) {
 	const router = useRouter()
 	const searchParams = useSearchParams()

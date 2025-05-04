@@ -1,14 +1,12 @@
 'use client'
 import { useEffect, useState, useCallback } from 'react'
+import { Button, Heading, ArrowLeft, ArrowRight } from '@/components'
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
 	CarouselApi,
 } from '@/components/ui/carousel'
-import { Button, Heading } from '../atoms'
-import { ArrowLeft, ArrowRight } from '../icons'
-
 
 type CarouselCardProps<T> = {
 	items: T[]

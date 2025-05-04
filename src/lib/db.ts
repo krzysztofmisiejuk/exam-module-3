@@ -1,17 +1,12 @@
-import { AddressType, ProductInCart, User } from '@/types/types'
+import { AddressType, OrderType, ProductInCart, User } from '@/types/types'
 import { PrismaClient } from '@prisma/client'
-// import { generateOrderId } from './utils'
 
-// Define a global type to store the PrismaClient instance
-// This prevents multiple instances during hot reloading in development
 const globalForPrisma = global as unknown as { prisma: PrismaClient }
 
-// Export a singleton instance of PrismaClient
-// Either use the existing instance from the global object or create a new one
 export const prisma =
 	globalForPrisma.prisma ||
 	new PrismaClient({
-		log: ['query'], // Enable logging of database queries for debugging
+		log: ['query'],
 	})
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
@@ -39,6 +34,7 @@ export async function createUser(user: User) {
 			email: user.email,
 			passwordHash: user.password,
 			mobileNumber: user.mobileNumber,
+			image: user.image,
 		},
 	})
 }
@@ -69,7 +65,11 @@ export async function getUserByEmail(email: string) {
 		where: { email },
 	})
 }
-
+export async function getUserByMobileNumber(mobileNumber: string) {
+	return await prisma.user.findFirst({
+		where: { mobileNumber },
+	})
+}
 export async function getUserByUsername(username: string) {
 	return await prisma.user.findFirst({
 		where: { firstName: username },
@@ -154,59 +154,29 @@ export async function updateAddress(userId: number, addressData: AddressType) {
 	})
 }
 
-// export async function createOrder(userId: number, items: ProductInCart[]) {
-// 	const address = await prisma.address.findUnique({
-// 		where: { userId },
-// 	})
-// 	if (!address) {
-// 		throw new Error('No address found for user')
-// 	}
-
-// 	const productTotal = items.reduce((acc, item) => {
-// 		return acc + item.price * item.quantity
-// 	}, 0)
-
-// 	const protectionTotal = items.reduce((acc, item) => {
-// 		return acc + (item.hasProtection ? 1 : 0)
-// 	}, 0)
-
-// 	const deliveryFee = 5
-// 	const insuranceFee = 6
-// 	const totalAmount =
-// 		productTotal + protectionTotal + deliveryFee + insuranceFee
-
-// 	const orderNumber = await generateOrderId()
-// 	return prisma.order.create({
-// 		data: {
-// 			orderNumber,
-// 			userId,
-// 			status: 'SUCCESS',
-// 			totalAmount,
-// 			createdAt: new Date(),
-// 			items: {
-// 				create: items.map((item) => ({
-// 					productId: item.id,
-// 					quantity: item.quantity,
-// 					priceAtPurchase: item.price + (item.hasProtection ? 1 : 0),
-// 				})),
-// 			},
-// 		},
-// 		include: {
-// 			items: true,
-// 		},
-// 	})
-// }
-
 export async function createOrder(
 	userId: number,
 	items: ProductInCart[],
 	orderNumber: string
 ) {
-	const address = await prisma.address.findUnique({
-		where: { userId },
-	})
-	if (!address) {
-		throw new Error('No address found for user')
+	for (const item of items) {
+		const product = await prisma.product.findUnique({
+			where: { id: item.id },
+			select: { stock: true, name: true },
+		})
+
+		if (!product) {
+			throw new Error(`Product not found`)
+		}
+
+		await prisma.product.update({
+			where: { id: item.id },
+			data: {
+				stock: {
+					decrement: item.quantity,
+				},
+			},
+		})
 	}
 
 	const productTotal = items.reduce((acc, item) => {
@@ -222,9 +192,9 @@ export async function createOrder(
 	const totalAmount =
 		productTotal + protectionTotal + deliveryFee + insuranceFee
 
-	return prisma.order.create({
+	return await prisma.order.create({
 		data: {
-			orderNumber, // Użyj przekazanego orderNumber
+			orderNumber,
 			userId,
 			status: 'SUCCESS',
 			totalAmount,
@@ -234,11 +204,17 @@ export async function createOrder(
 					productId: item.id,
 					quantity: item.quantity,
 					priceAtPurchase: item.price + (item.hasProtection ? 1 : 0),
+					color: item.color,
+					hasProtection: item.hasProtection,
 				})),
 			},
 		},
 		include: {
-			items: true,
+			items: {
+				include: {
+					product: true,
+				},
+			},
 		},
 	})
 }
@@ -253,8 +229,8 @@ export function getOrderById(id: number) {
 	})
 }
 
-export async function getOrdersByUserId(userId: number) {
-	return prisma.order.findMany({
+export async function getOrdersByUserId(userId: number): Promise<OrderType[]> {
+	const orders = await prisma.order.findMany({
 		where: { userId },
 		include: {
 			items: {
@@ -267,4 +243,23 @@ export async function getOrdersByUserId(userId: number) {
 			createdAt: 'desc',
 		},
 	})
+
+	return orders.map((order) => ({
+		id: order.id,
+		orderNumber: order.orderNumber,
+		userId: order.userId,
+		createdAt: order.createdAt.toISOString(),
+		status: order.status,
+		totalAmount: order.totalAmount,
+		products: order.items.map(
+			(item): ProductInCart => ({
+				...item.product,
+				quantity: item.quantity,
+				price: item.priceAtPurchase,
+				hasProtection: item.hasProtection,
+				isSelected: true,
+				color: item.color,
+			})
+		),
+	}))
 }
