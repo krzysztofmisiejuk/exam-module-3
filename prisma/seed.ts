@@ -111,19 +111,23 @@ async function main() {
 		'Combining a sleek, modern look with cutting-edge functionality, this product is ideal for those who value both performance and presentation. Expect fast, fluid responsiveness paired with premium build quality.',
 		"With a focus on durability and consistent top-tier results, this product is made to withstand the demands of daily use. Whether you're pushing limits or cruising through your day, it delivers dependable performance every time.",
 	]
+	const models = ['Pro GM5', 'IPS', 'TL', 'XTI', 'HD ']
 
 	let productCount = 1
 
 	for (const category of allCategories) {
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < allCategories.length; i++) {
 			const brand = allBrands[(productCount + i) % allBrands.length]
-			const discount = i === 0 ? 79.99 : null
+			const discount =
+				i === 0 ? 59.99 + +Math.floor(Math.random() * 5).toFixed() : null
 
 			await prisma.product.create({
 				data: {
-					name: `${category.name} ${i + 1}`,
+					name: `${category.name} ${models[category.id - 1]}${
+						(i + 1) * +Math.floor(Math.random() * 100).toFixed()
+					}`,
 					description: productDescriptions[i % productDescriptions.length],
-					price: 99.99 + i,
+					price: 89.99 + i + +Math.floor(Math.random() * 50).toFixed(),
 					stock: 50,
 					discount: discount ?? undefined,
 					imageUrl: imageMap[category.name],

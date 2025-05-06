@@ -1,6 +1,5 @@
 'use client'
-import { Button, Heading, Paragraph } from '@/components/atoms'
-import { Badge } from '@/components/ui/badge'
+import { Button, Heading, Paragraph, Badge } from '@/components'
 import { ProductInCart } from '@/types/types'
 
 export default function PriceSummary({

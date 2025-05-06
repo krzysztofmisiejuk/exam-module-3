@@ -1,9 +1,6 @@
 'use client'
-import Heading from '../../atoms/Heading'
-import { Card, CardContent } from '../../ui/card'
+import { Heading, Card, CardContent } from '@/components'
 import { BrandsProps, Category } from '@/types/types'
-
-
 
 export default function TileCard({ item }: { item: Category | BrandsProps }) {
 	return (
@@ -15,7 +12,6 @@ export default function TileCard({ item }: { item: Category | BrandsProps }) {
 						alt={item.name}
 					/>
 				)}
-
 				<Heading
 					Tag='h4'
 					size='xs'

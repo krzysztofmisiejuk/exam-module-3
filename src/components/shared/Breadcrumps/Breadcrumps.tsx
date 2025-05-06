@@ -1,4 +1,4 @@
-import { Breadcrumb } from '@/components/ui/breadcrumb'
+import { Breadcrumb } from '@/components'
 import BreadCrumpItems from './BreadCrumpsItem'
 
 export default async function Breadcrumps() {

@@ -1,13 +1,16 @@
 'use client'
 import { useContext, useState } from 'react'
-import { Badge } from '@/components/ui/badge'
 import { AlertContext } from '@/contexts'
 import { ProductInCart } from '@/types/types'
-import { Button, Heading } from '@/components/atoms'
-import { TrashIcon } from '@/components/icons'
-import QuantityCounter from '../QuantityCounter'
-import { ProductProtection } from '@/components/subPages/Checkout'
-import { handleQuantityChange } from '@/lib/cartUtils'
+import { handleQuantityChange } from '@/lib/cartActions'
+import {
+	Button,
+	Heading,
+	TrashIcon,
+	QuantityCounter,
+	Badge,
+	ProductProtection,
+} from '@/components'
 
 export default function ProductCart({
 	protection,

@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth'
-import CheckoutSuccess from '@/components/subPages/CheckoutSuccess/CheckoutSuccess'
+import CheckoutSuccess from '@/components/pages/CheckoutSuccess/CheckoutSuccess'
 import { authOptions } from '@/lib/authOptions'
 import { getOrdersByUserId } from '@/lib/db'
 

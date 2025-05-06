@@ -174,22 +174,6 @@ function FormMessage({ className, variant, ...props }: FormMessageProps) {
 	)
 }
 
-
-// function FormSuccessMessage({
-// 	children,
-// 	name,
-// }: {
-// 	children: React.ReactNode
-// 	name: string
-// }) {
-// 	const { getFieldState } = useFormContext()
-// 	const { error, isDirty, isTouched } = getFieldState(name)
-
-// 	if (error || !isDirty || !isTouched) return null
-
-// 	return <p className='text-sm text-success-500'>{children}</p>
-// }
-
 export {
 	useFormField,
 	Form,
@@ -199,5 +183,4 @@ export {
 	FormDescription,
 	FormMessage,
 	FormField,
-	// FormSuccessMessage,
 }

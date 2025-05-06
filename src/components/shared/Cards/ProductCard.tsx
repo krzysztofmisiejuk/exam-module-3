@@ -1,17 +1,21 @@
 'use client'
-import Image from 'next/image'
-import { Card, CardContent, CardHeader } from '../../ui/card'
-import { Badge } from '../../ui/badge'
-import Paragraph from '../../atoms/Paragraph'
-import Heading from '../../atoms/Heading'
-import { CartIcon } from '@/components/icons'
 import Link from 'next/link'
 import { useContext } from 'react'
 import { AlertContext } from '@/contexts'
 import { ProductInCart } from '@/types/types'
+import Image from 'next/image'
+import {
+	CartIcon,
+	Heading,
+	Paragraph,
+	Card,
+	CardContent,
+	CardHeader,
+	Badge,
+} from '@/components'
 
 type ProductCardProps = {
-	product: ProductInCart 
+	product: ProductInCart
 }
 
 export default function ProductCard({ product }: ProductCardProps) {

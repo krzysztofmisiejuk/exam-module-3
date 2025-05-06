@@ -6,7 +6,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/components/ui/form'
+} from '@/components'
 
 interface FormFieldWrapperProps<T extends FieldValues> {
 	control: Control<T>

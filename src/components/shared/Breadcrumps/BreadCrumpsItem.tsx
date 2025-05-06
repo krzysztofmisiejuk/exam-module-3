@@ -8,7 +8,7 @@ import {
 	BreadcrumbLink,
 	BreadcrumbList,
 	BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
+} from '@/components'
 
 function BreadcrumpField({
 	route,

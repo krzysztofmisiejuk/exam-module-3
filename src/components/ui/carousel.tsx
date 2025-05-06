@@ -4,8 +4,8 @@ import useEmblaCarousel, {
 	type UseEmblaCarouselType,
 } from 'embla-carousel-react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight } from '../icons'
+import { CarouselButton } from '@/components/ui/carouselButton'
+import { ChevronLeft, ChevronRight } from '@/components'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -171,17 +171,13 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
 
 function CarouselPrevious({
 	className,
-	variant = 'carousel',
-	size = 'carousel',
 	...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof CarouselButton>) {
 	const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
 	return (
-		<Button
+		<CarouselButton
 			data-slot='carousel-previous'
-			variant={variant}
-			size={size}
 			className={cn(
 				'absolute rounded-r-md',
 				orientation === 'horizontal'
@@ -195,23 +191,20 @@ function CarouselPrevious({
 		>
 			<ChevronLeft />
 			<span className='sr-only'>Previous slide</span>
-		</Button>
+		</CarouselButton>
 	)
 }
 
 function CarouselNext({
 	className,
-	variant = 'carousel',
-	size = 'carousel',
+
 	...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof CarouselButton>) {
 	const { orientation, scrollNext, canScrollNext } = useCarousel()
 
 	return (
-		<Button
+		<CarouselButton
 			data-slot='carousel-next'
-			variant={variant}
-			size={size}
 			className={cn(
 				'absolute rounded-l-md',
 				orientation === 'horizontal'
@@ -225,7 +218,7 @@ function CarouselNext({
 		>
 			<ChevronRight />
 			<span className='sr-only'>Next slide</span>
-		</Button>
+		</CarouselButton>
 	)
 }
 

@@ -1,13 +1,18 @@
 'use client'
 import { useContext, useState } from 'react'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Badge } from '@/components/ui/badge'
 import { Product, ProductInCart } from '@/types/types'
-import { Button, Heading, Paragraph } from '@/components/atoms'
-import { CartIcon, ShieldCross } from '@/components/icons'
-import QuantityCounter from '../QuantityCounter'
 import { AlertContext } from '@/contexts'
-import { loadCart, saveCart, handleQuantityChange } from '@/lib/cartUtils'
+import { loadCart, saveCart, handleQuantityChange } from '@/lib/cartActions'
+import {
+	Button,
+	Heading,
+	Paragraph,
+	CartIcon,
+	ShieldCross,
+	QuantityCounter,
+	Badge,
+	Checkbox,
+} from '@/components'
 
 const firstImgSrc = 'https://i.ibb.co/HTgqJJkJ/monitor.png'
 const secondImgSrc = 'https://i.ibb.co/5xXF2grX/keyboard.png'

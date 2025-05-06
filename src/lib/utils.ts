@@ -45,3 +45,5 @@ export async function generateOrderId(orderLength: number): Promise<string> {
 	const orderNumber = (orderLength + 1).toString().padStart(3, '0')
 	return `${dateStr}/${orderNumber}`
 }
+
+

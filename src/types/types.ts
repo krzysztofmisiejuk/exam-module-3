@@ -1,3 +1,5 @@
+import { JSX } from 'react'
+
 export interface JWT {
 	id: string
 	email: string
@@ -116,7 +118,18 @@ export interface AddressType {
 	isMainAddress?: boolean
 }
 
-
 export interface ProductDetailParamProps {
 	params: Promise<{ id: string }>
+}
+
+export interface ContactDataType {
+	title: string
+	description: string
+	link: string
+	icons: JSX.Element[]
+}
+
+export interface NewAddessData {
+	value: string
+	label: string
 }

@@ -5,11 +5,14 @@ import CarouselCards from './CarouselCards'
 import FormFieldWrapper from './FormFieldWrapper'
 import FormHeading from './FormHeading'
 import FormWrapper from './FormWrapper'
-import MainHeading from './MainHeading'
 import PriceSummary from './PriceSummary'
 import QuantityCounter from './QuantityCounter'
 import Logo from './Logo'
-
+import Button from './Button'
+import Paragraph from './Paragraph'
+import CheckboxField from './CheckboxField'
+import Heading from './Heading'
+import ProductProtection from './ProductProtection'
 
 export {
 	Breadcrumps,
@@ -21,9 +24,13 @@ export {
 	ProductDetailCard,
 	FormFieldWrapper,
 	FormWrapper,
-	MainHeading,
 	PriceSummary,
 	QuantityCounter,
 	CarouselCards,
-	Logo
+	Logo,
+	Button,
+	Paragraph,
+	CheckboxField,
+	Heading,
+	ProductProtection,
 }
