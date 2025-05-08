@@ -1,11 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { getServerSession } from 'next-auth'
-import { Alert, Footer, Header, SessionProviderWrapper } from '@/components'
-import { AlertProvider, ProductsProvider } from '@/contexts'
-import { getProducts } from '@/lib/db'
-import { authOptions } from '@/lib/authOptions'
+import { Alert, Footer, Header } from '@/components'
+import { AlertProvider } from '@/contexts'
+import SessionProviderWrapper from '@/components/SessionProvider'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -28,8 +26,6 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const session = await getServerSession(authOptions)
-	const data = await getProducts()
 	return (
 		<html
 			lang='en'
@@ -37,17 +33,15 @@ export default async function RootLayout({
 		>
 			<body className='h-full bg-base-gray-bg'>
 				<SessionProviderWrapper>
-					<ProductsProvider products={data}>
-						<AlertProvider>
-							<div className='flex flex-col gap-2 rounded min-h-screen w-full max-w-[1440px]  mx-auto bg-base-dark-1'>
-								<Header session={session} />
-								<Alert />
+					<AlertProvider>
+						<div className='flex flex-col gap-2 rounded min-h-screen w-full max-w-[1440px]  mx-auto bg-base-dark-1'>
+							<Header />
+							<Alert />
 
-								<main className='flex-1 px-10 overflow-hidden'>{children}</main>
-								<Footer />
-							</div>
-						</AlertProvider>
-					</ProductsProvider>
+							<main className='flex-1 px-10 overflow-hidden'>{children}</main>
+							<Footer />
+						</div>
+					</AlertProvider>
 				</SessionProviderWrapper>
 			</body>
 		</html>

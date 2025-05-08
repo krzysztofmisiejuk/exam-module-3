@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { ProductList, Sidebar } from "@/components"
+import { getProducts } from "@/lib/db"
 
 export const metadata: Metadata = {
 	title: 'Products',
@@ -10,6 +11,7 @@ export default async function Products({
 }: {
 	searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
+	const products = await getProducts()
 	const params = await searchParams
 	const { brand, category, maxPrice, minPrice, order, page, limit } =
 		params || {}
@@ -48,7 +50,7 @@ export default async function Products({
 		<section className='flex flex-col items-center justify-center text-neutral-900'>
 			<div className='border-t-1 border-gray-200 mt-10 w-screen'></div>
 			<div className='flex flex-col md:flex-row w-full items-start justify-start flex-1'>
-				<Sidebar />
+				<Sidebar products={products} />
 				<ProductList
 					products={data.products}
 					numberOfProducts={data?.totalProducts}

@@ -1,7 +1,5 @@
 'use client'
-import { useContext } from 'react'
 import { usePathname } from 'next/navigation'
-import { ProductContext } from '@/contexts'
 import { Product } from '@/types/types'
 import {
 	BreadcrumbItem,
@@ -31,8 +29,8 @@ function BreadcrumpField({
 	)
 }
 
-export default function BreadCrumpItems() {
-	const products: Product[] = useContext(ProductContext)
+export default function BreadCrumpItems({ products }: { products: Product[] }) {
+	// const products: Product[] = useContext(ProductContext)
 	const pathname = usePathname()
 	const segments = pathname.split('/').filter(Boolean)
 	const allSegments = ['home', ...segments]

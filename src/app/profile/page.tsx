@@ -15,9 +15,6 @@ export default async function ProfilePage() {
 	const orders = await getOrdersByUserId(Number(userId))
 	const addresses = await getAddressByUserId(Number(userId))
 
-console.log(addresses);
-
-
 	if (!addresses) {
 		return <p>no adress provided</p>
 	}

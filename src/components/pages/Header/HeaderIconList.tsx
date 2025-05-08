@@ -1,12 +1,8 @@
 import Link from 'next/link'
-import { Session } from 'next-auth'
 import { CartIcon } from '@/components'
+import { Session } from 'next-auth'
 
-export default function HeaderIconList({
-	session,
-}: {
-	session: Session | null
-}) {
+export default function HeaderIconList({ session }: { session: Session  }) {
 	return (
 		<div className='flex items-center justify-between gap-7 '>
 			<Link href='/cart'>

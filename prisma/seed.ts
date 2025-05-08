@@ -1,9 +1,15 @@
 import { PrismaClient } from '@prisma/client'
-import bcrypt from 'bcrypt'
+// import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
 async function main() {
+	await prisma.address.deleteMany({})
+	await prisma.product.deleteMany({})
+	await prisma.user.deleteMany({})
+	await prisma.category.deleteMany({})
+	await prisma.brand.deleteMany({})
+
 	await prisma.brand.createMany({
 		data: [
 			{ name: 'Rog', image: 'https://i.ibb.co/Q0gPH1V/ROG-Logo.png' },
@@ -68,7 +74,7 @@ async function main() {
 		],
 	})
 
-	const passwordHash = await bcrypt.hash('Password123!', 10)
+	const passwordHash = 'Password123!'
 
 	for (let i = 1; i <= 5; i++) {
 		const user = await prisma.user.create({

@@ -1,7 +1,7 @@
 'use client'
-import { useContext } from 'react'
+
 import { useRouter, useSearchParams } from 'next/navigation'
-import { ProductContext } from '@/contexts'
+
 import {
 	Heading,
 	CheckboxField,
@@ -11,9 +11,10 @@ import {
 	AccordionTrigger,
 	Input,
 } from '@/components'
+import { Product } from '@/types/types'
 
-export default function Sidebar() {
-	const products = useContext(ProductContext)
+export default function Sidebar({ products }: { products: Product[] }) {
+
 	const router = useRouter()
 	const searchParams = useSearchParams()
 

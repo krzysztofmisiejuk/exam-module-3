@@ -1,6 +1,6 @@
 import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { compare } from 'bcrypt'
+
 import { getUserByEmail, getUserByMobileNumber } from '@/lib/db'
 
 export const authOptions: AuthOptions = {
@@ -29,7 +29,7 @@ export const authOptions: AuthOptions = {
 					return null
 				}
 
-				const isPasswordValid = await compare(password, user.passwordHash)
+				const isPasswordValid = password === user.passwordHash
 
 				if (!isPasswordValid) {
 					return null

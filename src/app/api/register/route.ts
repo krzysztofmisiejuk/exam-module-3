@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+// import bcrypt from 'bcrypt'
 import { createAddress, createUser, getUsers } from '@/lib/db'
 import { AddressType, User } from '@/types/types'
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 			)
 		}
 
-		const hashedPassword = await bcrypt.hash(newUser.data.password, 10)
+		const hashedPassword = newUser.data.password
 
 		const createdUser = await createUser({
 			name: newUser.data.name,
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 			country: newUser.data.address ?? 'unknown',
 			street: 'unknown',
 			city: 'unknown',
-			postalCode: 'unknown',
+			zipCode: 'unknown',
 			province: 'unknown',
 		}
 

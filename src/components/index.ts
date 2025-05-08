@@ -1,4 +1,4 @@
-import SessionProviderWrapper from './SessionProvider'
+// import SessionProviderWrapper from './SessionProvider'
 
 import {
 	Breadcrumps,
@@ -125,7 +125,7 @@ import {
 } from './ui'
 
 export {
-	SessionProviderWrapper,
+	// SessionProviderWrapper,
 
 	// shared
 	Breadcrumps,

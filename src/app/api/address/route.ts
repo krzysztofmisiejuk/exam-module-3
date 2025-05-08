@@ -27,7 +27,6 @@ export async function POST(req: NextRequest) {
 	}
 
 	const newAddress: AddressType = await req.json()
-	console.log('NEW_ADDRESS', newAddress)
 
 	try {
 		if (

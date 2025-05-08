@@ -8,3 +8,4 @@ export default function SessionProviderWrapper({
 }) {
 	return <SessionProvider>{children}</SessionProvider>
 }
+// export * from 'next-auth/react'
