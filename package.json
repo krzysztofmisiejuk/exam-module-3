@@ -8,13 +8,9 @@
 	},
 	"scripts": {
 		"dev": "next dev --turbopack",
-		"build": "next build",
+		"build": "prisma generate && prisma migrate deploy && prisma db seed && next build",
 		"start": "next start",
-		"lint": "next lint",
-		"prisma:generate": "prisma generate",
-		"migrate": "prisma migrate deploy",
-		"seed": "prisma db seed",
-		"postinstall": "prisma generate && prisma migrate deploy && prisma db seed"
+		"lint": "next lint"
 	},
 	"engines": {
 		"node": ">=18.0.0"
